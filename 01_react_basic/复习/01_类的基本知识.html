@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            总结:
+                1.类中的构造器不是必须写的，要对实例进行一些初始化的操作，如添加指定属性时才写
+                2.如果A类继承了B类，且A类中写了构造器，那么A类构造器中的super是必须要调用的
+                3.类中所定义的方法，都是放在了类的原型对象上，供实例去使用
+         */
+        //创建一个Proson类
+        class Person {
+            //构造器方法
+            constructor(name, age) {
+                //构造器中的this是谁？ ——> 类的实例对象
+                this.name = name;
+                this.age = age;
+            }
+            //一般方法
+            speak() {
+                console.log(`名字:${this.name}，年龄:${this.name}`);
+            }
+        }
+
+        //创建一个Person的实例对象
+        const p1 = new Person('廖家嘉', 17);
+        const p2 = new Person('jiajia', 17);
+        console.log(p1);
+        console.log(p2);
+        p1.speak();
+        p2.speak();
+
+        //创建一个Student类，继承于Person类
+        class Studen extends Person {
+            constructor(name, age, grades) {
+                super(name, age); //语法规定
+                this.grades = grades;
+            }
+
+            //重写从夫类继承过来的方法
+            speak() {
+                console.log(`名字:${this.name}，年龄:${this.name}，我读的是${this.grades}`);
+            }
+            study() {
+                console.log('我在努力学习');
+            }
+        }
+
+        const s1 = new Studen('liaoliao', 17, '18jsjgjsdb');
+        console.log(s1);
+
+        s1.speak();
+
+        class Name {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age
+            }
+
+            static demo = 'jiajia';
+        }
+        // Name.demo = 'jiajia';
+
+        let n1 = new Name('abc', 18);
+        console.log(n1);
+
+        console.log(Name.demo);
+    </script>
+</body>
+
+</html>

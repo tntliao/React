@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <!-- 准备好一个“容器” -->
+    <div id="test"></div>
+    <!-- 引入react核心库 -->
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <!-- 引入babel，用于jsx转为js -->
+    <script src="../js/babel.min.js"></script>
+    <script type="text/babel">
+      class Login extends React.Component {
+        state = { username: "", password: "" };
+
+        saveUsername = (event) => {
+          this.setState({ username: event.target.value });
+        };
+
+        savePassword = (event) => {
+          this.setState({ password: event.target.value });
+        };
+        handleSumbit = () => {
+          const { username, password } = this.state;
+          alert(`用户名${username},密码${password}`);
+        };
+        render() {
+          return (
+            <form onSubmit={this.handleSumbit}>
+              用户名:
+              <input type="text" onChange={this.saveUsername} name="username" />
+              密码:
+              <input
+                type="password"
+                onChange={this.savePassword}
+                name="password"
+              />
+              <button>登录</button>
+            </form>
+          );
+        }
+      }
+
+      ReactDOM.render(<Login />, document.getElementById("test"));
+    </script>
+  </body>
+</html>

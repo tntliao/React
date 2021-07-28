@@ -1,0 +1,15 @@
+.parent {
+    width           : 500px;
+    background-color: antiquewhite;
+    padding         : 10px;
+}
+
+.child {
+    background-color: aqua;
+    padding         : 10px;
+}
+
+.grand {
+    background-color: azure;
+    padding         : 10px;
+}

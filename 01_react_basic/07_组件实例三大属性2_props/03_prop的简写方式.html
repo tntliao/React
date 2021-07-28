@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 准备好一个“容器” -->
+    <div id="test1"></div>
+    <!-- 引入react核心库 -->
+    <script src="../js/react.development.js"></script>
+    <!-- 引入reach-dom，用于支持react操作DOM -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入babel，用于jsx转为js -->
+    <script src="../js/babel.min.js"></script>
+    <!--  -->
+    <script src="../js/prop-types.js"></script>
+    <script type="text/babel">
+        //创建组件
+        class Person extends React.Component {
+            constructor(props) {
+                //构造器是否接收props，是否传递给super，取决于：是否希望在构造器中通过this访问props
+                super(props);
+                console.log(this.props);
+            }
+
+            static propTypes = {
+                name: PropTypes.string.isRequired, //限制name必传，且为字符串
+                age: PropTypes.number, //限制age为数值
+                gender: PropTypes.string, //限制gender为字符串
+            }
+
+            static defaultProps = {
+                age: 18, //age默认为18
+                gender: '男'//gender默认值为男
+            }
+
+            render() {
+                const { name, age, gender } = this.props;
+
+                return (
+                    <ul>
+                        <li>名字：{name}</li>
+                        <li>年龄：{age + 1}</li>
+                        <li>性别：{gender}</li>
+                    </ul>
+                )
+            }
+        }
+
+        //渲染组件到页面
+        ReactDOM.render(<Person name='liao' />, document.getElementById('test1'));
+    </script>
+</body>
+
+</html>
